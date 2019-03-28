@@ -11,19 +11,25 @@ class CreateAdminUsers extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Lucas Moura',
-            'email' => 'lucas'.'@homemmaquina.com.br',
-            'type' => 3,
-            'github_username' => 'mouradev',
-            'password' => bcrypt('eganrac'),
-        ]);
+        if(!\App\User::where('email', 'lucas'.'@homemmaquina.com.br')->first()) {
+            $User = \App\User::create([
+                'name' => 'Lucas Moura',
+                'email' => 'lucas'.'@homemmaquina.com.br',
+                'type' => 3,
+                'github_username' => 'mouradev',
+                'password' => bcrypt('eganrac'),
+            ]);
+            $User->save();
+        }
 
-        DB::table('users')->insert([
-            'name' => 'Richard',
-            'email' => 'richard'.'@homemmaquina.com.br',
-            'type' => 3,
-            'password' => bcrypt('eganrac'),
-        ]);
+        if(!\App\User::where('email', 'richard'.'@homemmaquina.com.br')->first()) {
+            $User = \App\User::create([
+                'name' => 'Richard',
+                'email' => 'richard'.'@homemmaquina.com.br',
+                'type' => 3,
+                'password' => bcrypt('eganrac'),
+            ]);
+            $User->save();
+        }
     }
 }
