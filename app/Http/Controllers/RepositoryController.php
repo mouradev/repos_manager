@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository;
 use Illuminate\Http\Request;
 
-use App\User;
-
-class UserController extends Controller
+class RepositoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $Users = User::all();
-        return view('user.list', [
-            'Users' => $Users
-        ]);
+        //
     }
 
     /**
@@ -28,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.add');
+        //
     }
 
     /**
@@ -39,56 +35,51 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $User = new User($request->except('password'));
-        $User->password = bcrypt($request->input('password'));
-
-        $User->save();
-
-        return redirect()->route('usuarios')->with('status', 'Usuário criado');
+        dd($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Repository  $repository
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Repository $repository)
     {
-        return "view do user #{$id}";
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Repository  $repository
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Repository $repository)
     {
-        return "form para editar o user #{$id}";
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Repository  $repository
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Repository $repository)
     {
-        return "recebe post para editar user #{$id}";        
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Repository  $repository
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Repository $repository)
     {
-        return "deletar o user #{$id}";        
+        //
     }
 }
