@@ -3,7 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        @include('layouts.parts.aside-menu')
+        <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
@@ -14,7 +15,22 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <form action="{{ route('repository@store') }}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label for="name">Repositório</label>
+                                <input type="text" name="name" id="name" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="">&nbsp;</label>
+                                <input type="submit" class="form-control btn btn-success" value="Criar">
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
