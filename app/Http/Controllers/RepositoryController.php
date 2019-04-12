@@ -38,13 +38,16 @@ class RepositoryController extends Controller
     public function store(Request $request)
     {
         dump($request->all());
-        $Github = new Github;
-dump($Github);
-        dump($Github::me()->organizations());
+// dump(Github);
+    
+        // $create_repo = GitHub::api('repo')->create($request->input('name'), 'This is the description of a repo', 'http://my-repo-homepage.org', false);
 
-        // dump(GitHub::getDefaultConnection());
-        // dump(GitHub::connection('main')->repo()->show('GrahamCampbell', 'Laravel-GitHub'));
-
+        // dd($create_repo);
+        $Client = new \Github\Client();
+        $repos = (GitHub::->currentUser()->repositories());
+dump($repos);
+        $pager = new \Github\ResultPager($repos);
+dump($pager);
         // $repos = GitHub::api('repo')->all();
         
         // dump($repos);
