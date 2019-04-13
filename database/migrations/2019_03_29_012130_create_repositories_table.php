@@ -15,6 +15,11 @@ class CreateRepositoriesTable extends Migration
     {
         Schema::create('repositories', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->text('desc')->nullable();
+            $table->string('url');
+            $table->string('ssh_url');
+            $table->string('status')->default('1');
             $table->timestamps();
         });
     }

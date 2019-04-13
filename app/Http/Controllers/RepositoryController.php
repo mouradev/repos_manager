@@ -37,22 +37,26 @@ class RepositoryController extends Controller
      */
     public function store(Request $request)
     {
-        dump($request->all());
-// dump(Github);
-    
-        // $create_repo = GitHub::api('repo')->create($request->input('name'), 'This is the description of a repo', 'http://my-repo-homepage.org', false);
+        try {
+            // $create_repo = GitHub::api('repo')->create($request->input('name'), 'This is the description of a repo', 'http://my-repo-homepage.org', false);
+            // $Repository = Repository::create([
+            //     'name' => $request->input('name'),
+            //     'url' => $create_repo['html_url'],
+            //     'ssh_url' => $create_repo['ssh_url'],
+            // ]);
 
-        // dd($create_repo);
-        $Client = new \Github\Client();
-        $repos = (GitHub::->currentUser()->repositories());
-dump($repos);
-        $pager = new \Github\ResultPager($repos);
-dump($pager);
-        // $repos = GitHub::api('repo')->all();
-        
-        // dump($repos);
+            // Adiciona o user atual como colaborator
+            $User = \Auth::user();
+            dd( GitHub::api('repo')->collaborators()->add($User->github_username, $request->input('name'), 'collaborator') );
 
-        dd('teste');
+            return view('repository.success', [
+                'Repository' => $Repository,
+            ]);
+        } catch(\Exception $e) {
+            return redirect()->back()->with('error', [$e->getMessage()]);
+        }
+
+        dd($create_repo);
     }
 
     /**

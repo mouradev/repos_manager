@@ -20,3 +20,11 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+// Register $ global var for jQuery
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+
+$(document).ready(function() {
+    $('.alert').alert();
+})
