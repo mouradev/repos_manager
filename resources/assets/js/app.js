@@ -25,6 +25,18 @@ const app = new Vue({
 import $ from 'jquery';
 window.$ = window.jQuery = $;
 
-$(document).ready(function() {
+window.onload = function() {
     $('.alert').alert();
-})
+};
+
+function convertToSlug(event, element) {
+    var $element = $(element);
+
+    var Text = $element.val();
+    var ntext = Text
+        .toLowerCase()
+        .replace(/ /g,'-')
+        .replace(/[^\w-]+/g,'');
+    
+    $element.val(ntext);
+}

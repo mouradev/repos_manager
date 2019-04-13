@@ -11589,16 +11589,25 @@ window.Vue = __webpack_require__(35);
 Vue.component('example', __webpack_require__(39));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
 });
 
 // Register $ global var for jQuery
 
 window.$ = __webpack_provided_window_dot_jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
 
-__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
-  __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.alert').alert();
-});
+window.onload = function () {
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.alert').alert();
+};
+
+function convertToSlug(event, element) {
+    var $element = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(element);
+
+    var Text = $element.val();
+    var ntext = Text.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+
+    $element.val(ntext);
+}
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),

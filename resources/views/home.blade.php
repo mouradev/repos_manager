@@ -19,8 +19,8 @@
                         {{ csrf_field() }}
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label for="name">Repositório</label>
-                                <input type="text" name="name" id="name" class="form-control">
+                                <label for="repo-name">Repositório</label>
+                                <input type="text" name="name" id="repo-name" onkeyup="convertToSlug(event, this)" class="form-control">
                             </div>
                         </div>
 
